@@ -2,14 +2,14 @@ import React from "react";
 import { useState } from "react";
 
 export const ShoppingForm = () => {
-  const [shoppingText, setShoppingText] = useState("");
+  const [title, setTitle] = useState("");
   const handleChange = (e) => {
-    setShoppingText(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(shoppingText);
+    console.log(title);
   };
   return (
     <form
@@ -21,6 +21,7 @@ export const ShoppingForm = () => {
         placeholder="Shopping item"
         className="px-2 py-1 w-full"
         onChange={handleChange}
+        value={title}
       />
       <button className="bg-green-500 mt-4 w-1/2 px-2 py-1">Add</button>
     </form>
