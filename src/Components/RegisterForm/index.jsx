@@ -11,9 +11,19 @@ export const RegisterForm = () => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    const { email, password } = registerData;
     e.preventDefault();
-    console.log(registerData);
+
+    if (email.length && password.length) {
+      const res = await fetch("http://localhost:4000/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(registerData),
+      });
+      const data = res.json();
+      console.log(data);
+    }
   };
 
   return (

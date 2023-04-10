@@ -6,7 +6,7 @@ import { LoginForm } from "./Components/LoginForm";
 import { RegisterForm } from "./Components/RegisterForm";
 
 export const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <div className="min-h-screen w-full bg-slate-500 flex flex-col items-center">
       {isLogged ? (
