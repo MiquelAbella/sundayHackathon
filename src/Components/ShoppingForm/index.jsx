@@ -1,15 +1,27 @@
 import React from "react";
 import { useState } from "react";
 
-export const ShoppingForm = () => {
+export const ShoppingForm = ({user}) => {
   const [title, setTitle] = useState("");
   const handleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
+    const res = await fetch("http://localhost:4000/additem", {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title,
+        userId: user._id
+      })
+    })
+    const data = await res.json()
+    console.log(data)
+    
   };
   return (
     <form

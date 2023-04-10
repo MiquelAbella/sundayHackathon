@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const LoginForm = () => {
+export const LoginForm = ({setUser}) => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -11,9 +11,23 @@ export const LoginForm = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(loginData);
+    if(loginData.email.length && loginData.password.length){
+      const res = await fetch('http://localhost:4000/getuser',{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(loginData)
+      })
+      const data = await res.json()
+      if(data.ok){
+        setUser(data.user)
+      }
+    }
+   
   };
   return (
     <form

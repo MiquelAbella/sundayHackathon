@@ -6,17 +6,18 @@ import { LoginForm } from "./Components/LoginForm";
 import { RegisterForm } from "./Components/RegisterForm";
 
 export const App = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState(null);
+  console.log(user)
   return (
     <div className="min-h-screen w-full bg-slate-500 flex flex-col items-center">
-      {isLogged ? (
+      {user ? (
         <>
-          <ShoppingForm />
-          <ShoppingList />
+          <ShoppingForm user={user}/>
+          <ShoppingList user={user}/>
         </>
       ) : (
         <>
-          <LoginForm />
+          <LoginForm setUser={setUser} />
           <RegisterForm />
         </>
       )}
